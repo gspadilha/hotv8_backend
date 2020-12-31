@@ -11,8 +11,6 @@ interface IResponse {
   imagens: Array<string>;
 }
 
-const veiculos: Array<IResponse> = [];
-
 const buscarInformacoesPagina = async (url: string): Promise<CheerioRoot> => {
   const response = await nodeFetch(url);
   const data = await response.text();
@@ -22,6 +20,7 @@ const buscarInformacoesPagina = async (url: string): Promise<CheerioRoot> => {
 const buscarCarros = async (local: string): Promise<Array<IResponse>> => {
   let $ = await buscarInformacoesPagina(`${process.env.SITE}${local}`);
 
+  const veiculos: Array<IResponse> = [];
   const urls: Array<string> = [];
 
   $('.tour-minimal-inner').each((_, veiculo) => {
