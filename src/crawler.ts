@@ -4,6 +4,7 @@ import cheerio, { load } from 'cheerio';
 type CheerioRoot = ReturnType<typeof load>;
 
 interface IResponse {
+  index: number;
   imagemDestaque: string;
   nome: string;
   preco: string;
@@ -22,6 +23,7 @@ const buscarCarros = async (local: string): Promise<Array<IResponse>> => {
 
   const veiculos: Array<IResponse> = [];
   const urls: Array<string> = [];
+  let index = 1;
 
   $('.tour-minimal-inner').each((_, veiculo) => {
     urls.push(
@@ -56,12 +58,15 @@ const buscarCarros = async (local: string): Promise<Array<IResponse>> => {
         .each((_, image) => imagens.push(image.attribs.href));
 
       veiculos.push({
+        index,
         imagemDestaque,
         nome,
         preco,
         descricao,
         imagens,
       });
+
+      index += 1;
     }
   }
 
