@@ -7,7 +7,7 @@
     "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files",
     "dev:start_original": "ts-node-dev -r tsconfig-paths/register --inspect --transpile-only --ignore-watch node_modules --ignore-watch coverage src/server.ts",
     "dev:start": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --ignore-watch coverage src/server.ts",
-    "start": "ts-node src/shared/infra/http/server.ts",
+    "start": "ts-node src/server.ts",
     "release": "standard-version"
   },
   "dependencies": {
